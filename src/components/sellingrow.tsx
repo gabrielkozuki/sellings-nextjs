@@ -1,6 +1,6 @@
 import { TableRow, TableCell } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Pencil, Trash } from "lucide-react";
+import { Pencil } from "lucide-react";
 
 type Props = {
     selling: {
@@ -17,7 +17,7 @@ export default function SellingRow({ selling }: Props) {
             <TableCell className="px-4 py-2 border-t">{selling.price}</TableCell>
             <TableCell className="px-4 py-2 border-t flex gap-6 justify-end">
             <Button variant="outline"><Pencil /> Editar</Button>
-            <Button variant="destructive"><Trash /> Deletar</Button>
+            <Button variant="link" className="text-red-600">Deletar</Button>
             </TableCell>
         </TableRow>
     )

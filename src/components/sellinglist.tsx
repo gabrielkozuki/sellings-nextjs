@@ -19,7 +19,7 @@ export default function SellingList() {
           <TableRow>
             <TableHead className="px-4 py-2 text-left text-black font-semibold">Nome</TableHead>
             <TableHead className="px-4 py-2 text-left text-black font-semibold">Valor</TableHead>
-            <TableHead className="px-4 py-2 text-right text-black font-semibold">Ação</TableHead>
+            <TableHead className="px-4 py-2 text-center text-black font-semibold">Ação</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

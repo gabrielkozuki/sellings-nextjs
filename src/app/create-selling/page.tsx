@@ -4,15 +4,22 @@ import { Button } from "@/components/ui/button";
 import { useNavigation } from "@/hooks/usenavigation";
 import { ChevronRight } from "lucide-react"
 
+import SellingForm from "@/components/sellingform";
+
 export default function CreateSelling() {
   const { navigateBack } = useNavigation();
+
+  const handleSubmit = (name: string, price: string) => {
+    console.log(name, price);
+  }
 
   return (
     <div className="container mx-auto p-4 mt-6 max-w-4xl">
       <div className="flex flex-row justify-between mb-4 items-center">
-        <h1 className="text-3xl font-bold text-black-700 mb-2">Criar venda</h1>
+        <h1 className="text-3xl font-bold text-black-700 mb-6">Criar venda</h1>
         <Button onClick={() => navigateBack()} variant="link"><ChevronRight /> Voltar</Button>
       </div>
+      <SellingForm buttonLabel="Salvar" onSubmit={handleSubmit} />
     </div>
   )
 }
