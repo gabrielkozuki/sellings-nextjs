@@ -1,13 +1,18 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Table, TableHead, TableHeader, TableBody, TableRow, TableCaption } from "@/components/ui/table";
 
 import mockSellings from "@/mock/sellings";
 import SellingRow from "@/components/sellingrow";
+import { useNavigation } from "@/hooks/usenavigation";
 
 export default function SellingList() {
+  const { navigateTo } = useNavigation();
+
   return (
     <>
-      <Button className="my-6">Novo</Button>
+      <Button className="my-6" onClick={() => navigateTo("/create-selling")}>Novo</Button>
       <Table className="w-full border border-gray-200 rounded-lg shadow-sm">
         <TableCaption>Lista de vendas cadastradas.</TableCaption>
         <TableHeader className="bg-gray-100">
