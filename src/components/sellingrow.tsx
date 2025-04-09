@@ -3,18 +3,18 @@ import { Button } from "@/components/ui/button";
 import { Pencil, Trash } from "lucide-react";
 
 type Props = {
-    product: {
+    selling: {
         id: number;
         name: string;
         price: string;
     }
 }
 
-export default function ProductRow({ product }: Props) {
+export default function SellingRow({ selling }: Props) {
     return (
         <TableRow className="hover:bg-gray-50">
-            <TableCell className="px-4 py-2 border-t">{product.name}</TableCell>
-            <TableCell className="px-4 py-2 border-t">{product.price}</TableCell>
+            <TableCell className="px-4 py-2 border-t">{selling.name}</TableCell>
+            <TableCell className="px-4 py-2 border-t">{selling.price}</TableCell>
             <TableCell className="px-4 py-2 border-t flex gap-6 justify-end">
             <Button variant="outline"><Pencil /> Editar</Button>
             <Button variant="destructive"><Trash /> Deletar</Button>

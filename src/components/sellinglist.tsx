@@ -1,15 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Table, TableHead, TableHeader, TableBody, TableRow, TableCell, TableCaption } from "@/components/ui/table";
+import { Table, TableHead, TableHeader, TableBody, TableRow, TableCaption } from "@/components/ui/table";
 
-import mockProducts from "@/mock/products";
-import ProductRow from "@/components/productrow";
+import mockSellings from "@/mock/sellings";
+import SellingRow from "@/components/sellingrow";
 
-export default function ProductList() {
+export default function SellingList() {
   return (
     <>
       <Button className="my-6">Novo</Button>
       <Table className="w-full border border-gray-200 rounded-lg shadow-sm">
-        <TableCaption>Lista de produtos cadastrados.</TableCaption>
+        <TableCaption>Lista de vendas cadastradas.</TableCaption>
         <TableHeader className="bg-gray-100">
           <TableRow>
             <TableHead className="px-4 py-2 text-left text-black font-semibold">Nome</TableHead>
@@ -18,8 +18,8 @@ export default function ProductList() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {mockProducts.map((product) => (
-            <ProductRow key={product.id} product={product} />
+          {mockSellings.map((selling) => (
+            <SellingRow key={selling.id} selling={selling} />
           ))}
         </TableBody>
       </Table>
