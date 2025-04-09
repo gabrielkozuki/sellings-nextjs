@@ -3,12 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { Table, TableHead, TableHeader, TableBody, TableRow, TableCaption } from "@/components/ui/table";
 
-import mockSellings from "@/mock/sellings";
+import { useSelling } from "@/context/sellingcontext";
 import SellingRow from "@/components/sellingrow";
 import { useNavigation } from "@/hooks/usenavigation";
 
 export default function SellingList() {
   const { navigateTo } = useNavigation();
+  const { sellings } = useSelling();
 
   return (
     <>
@@ -23,7 +24,7 @@ export default function SellingList() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {mockSellings.map((selling) => (
+          {sellings.map((selling) => (
             <SellingRow key={selling.id} selling={selling} />
           ))}
         </TableBody>
