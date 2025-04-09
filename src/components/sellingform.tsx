@@ -18,16 +18,16 @@ export default function SellingForm({ buttonLabel, onSubmit }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-4 p-4">
-      <div className="grid w-full max-w-sm items-center gap-1.5">
+    <div className="flex flex-col gap-4">
+      <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="name">Nome</Label>
         <Input type="text" id="name" placeholder="..." value={name} onChange={(e) => setName(e.target.value)} />
       </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
+      <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="price">Preço</Label>
         <Input type="text" id="price" placeholder="R$ 0,00" value={price} onChange={(e) => setPrice(e.target.value)} />
       </div>
-      <div className="flex flex-row mt-4 justify-between max-w-sm">
+      <div className="flex flex-row mt-4 justify-end gap-4">
         <Button className="max-w-sm" onClick={clearFields} variant="secondary">Limpar</Button>
         <Button className="max-w-sm" onClick={() => onSubmit(name, price)}>{buttonLabel}</Button>
       </div>
