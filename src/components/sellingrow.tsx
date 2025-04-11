@@ -4,38 +4,66 @@ import { Dialog } from "@/components/ui/dialog";
 import { Pencil } from "lucide-react";
 import { DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog";
+import { useState } from "react";
 
 import SellingForm from "@/components/sellingform";
+import { useSelling } from "@/context/sellingcontext";
+import type { Selling } from "@/lib/types";
+import { toast } from "sonner";
 
 type Props = {
-  selling: {
-    id: number;
-    name: string;
-    price: string;
-  }
+  selling: Selling
 }
 
 export default function SellingRow({ selling }: Props) {
+  const { updateSelling, deleteSelling } = useSelling();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const handleEdit = () => { };
+  const handleEdit = (name: string, price: string) => {
+    if (name !== "" && price !== "") {
+      const result = updateSelling({ id: selling.id, name, price } as Selling);
 
-  const handleDelete = () => { };
+      if (result) {
+        toast.success("Venda atualizada com sucesso!");
+        setIsDialogOpen(false);
+      } else {
+        toast.error("Erro ao atualizar venda.");
+      }
+    } else {
+      toast.error("Preencha todos os campos.");
+    }
+  };
+
+  const handleDelete = (id: number | undefined) => {
+    if (id === undefined) {
+      toast.error("Erro ao deletar venda.");
+      return;
+    }
+
+    const result = deleteSelling(id);
+
+    if (result) {
+      toast.success("Venda deletada com sucesso!");
+    } else {
+      toast.error("Erro ao deletar venda.");
+    }
+  };
 
   return (
     <TableRow key={selling.id} className="hover:bg-gray-50">
       <TableCell className="px-4 py-2 border-t">{selling.name}</TableCell>
       <TableCell className="px-4 py-2 border-t">{selling.price}</TableCell>
       <TableCell className="px-4 py-2 border-t flex gap-6 justify-end">
-        <Dialog>
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button variant="outline"><Pencil /> Editar</Button>
+            <Button variant="outline" onClick={() => setIsDialogOpen(true)}><Pencil /> Editar</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Editar venda</DialogTitle>
               <DialogDescription></DialogDescription>
             </DialogHeader>
-            <SellingForm buttonLabel="Editar" onSubmit={handleEdit} />
+            <SellingForm data={selling} buttonLabel="Editar" onSubmit={handleEdit} />
           </DialogContent>
         </Dialog>
 
@@ -52,7 +80,7 @@ export default function SellingRow({ selling }: Props) {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancelar</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDelete}>Confirmar</AlertDialogAction>
+              <AlertDialogAction onClick={() => handleDelete(selling.id)}>Confirmar</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

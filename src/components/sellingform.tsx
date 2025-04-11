@@ -1,16 +1,19 @@
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+
+import type { Selling } from "@/lib/types";
 
 type Props = {
+  data?: Selling | undefined,
   buttonLabel: string,
   onSubmit: (name: string, price: string) => void,
 }
 
-export default function SellingForm({ buttonLabel, onSubmit }: Props) {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+export default function SellingForm({ data, buttonLabel, onSubmit }: Props) {
+  const [name, setName] = useState(data ? data.name : "");
+  const [price, setPrice] = useState(data ? data.price : "");
 
   const clearFields = () => {
     setName("");

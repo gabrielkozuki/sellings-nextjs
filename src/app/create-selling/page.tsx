@@ -3,14 +3,30 @@
 import { Button } from "@/components/ui/button";
 import { useNavigation } from "@/hooks/usenavigation";
 import { ChevronRight } from "lucide-react"
+import { toast } from "sonner";
 
+import { useSelling } from "@/context/sellingcontext";
 import SellingForm from "@/components/sellingform";
+import type { Selling } from "@/lib/types";
 
 export default function CreateSelling() {
   const { navigateBack } = useNavigation();
+  const { createSelling } = useSelling();
 
   const handleSubmit = (name: string, price: string) => {
-    console.log(name, price);
+    if (name !== "" && price !== "") {
+      const result = createSelling({ name, price } as Selling);
+      
+      if (result) {
+        toast.success("Venda criada com sucesso!");
+        navigateBack();
+      } else {
+        toast.error("Erro ao criar venda.");
+      }
+
+    } else {
+      toast.error("Preencha todos os campos.");
+    }
   }
 
   return (
