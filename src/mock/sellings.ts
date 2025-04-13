@@ -15,12 +15,12 @@ const mockSellings = [
         price: "R$ 300,00"
     },
     {
-        id: 6,
+        id: 4,
         name: "Monitor 240hz",
         price: "R$ 1.800,00"
     },
     {
-        id: 7,
+        id: 5,
         name: "Teclado Mecânico",
         price: "R$ 600,00"
     }
