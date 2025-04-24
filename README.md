@@ -24,3 +24,5 @@ This project is a web application built with [Next.js](https://nextjs.org/), des
     ```
 
 4. Open your browser and navigate to `http://localhost:3000`.
+
+You can also access the live demo at: [https://sellings-nextjs.onrender.com/](https://sellings-nextjs.onrender.com/)
