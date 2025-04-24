@@ -72,7 +72,7 @@ export function useSelling() {
   const context = useContext(SellingContext);
 
   if (!context) {
-    throw new Error("useSelling must be used within a SellingProvider");
+    throw new Error("useSelling precisa estar contido em um SellingProvider");
   }
 
   return context;

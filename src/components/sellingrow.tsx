@@ -8,8 +8,9 @@ import { useState } from "react";
 
 import SellingForm from "@/components/sellingform";
 import { useSelling } from "@/context/sellingcontext";
-import type { Selling } from "@/lib/types";
 import { toast } from "sonner";
+import type { Selling } from "@/lib/types";
+import { formatCurrency } from "@/lib/utils";
 
 type Props = {
   selling: Selling
@@ -19,8 +20,8 @@ export default function SellingRow({ selling }: Props) {
   const { updateSelling, deleteSelling } = useSelling();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const handleEdit = (name: string, price: string) => {
-    if (name !== "" && price !== "") {
+  const handleEdit = (name: string, price: number) => {
+    if (name !== "" && price !== 0) {
       const result = updateSelling({ id: selling.id, name, price } as Selling);
 
       if (result) {
@@ -52,7 +53,7 @@ export default function SellingRow({ selling }: Props) {
   return (
     <TableRow key={selling.id} className="hover:bg-gray-50">
       <TableCell className="px-4 py-2 border-t">{selling.name}</TableCell>
-      <TableCell className="px-4 py-2 border-t">{selling.price}</TableCell>
+      <TableCell className="px-4 py-2 border-t">{formatCurrency(selling.price.toFixed(2))}</TableCell>
       <TableCell className="px-4 py-2 border-t flex gap-6 justify-end">
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>

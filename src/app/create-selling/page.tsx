@@ -13,8 +13,8 @@ export default function CreateSelling() {
   const { navigateBack } = useNavigation();
   const { createSelling } = useSelling();
 
-  const handleSubmit = (name: string, price: string) => {
-    if (name !== "" && price !== "") {
+  const handleSubmit = (name: string, price: number) => {
+    if (name !== "" && price !== 0) {
       const result = createSelling({ name, price } as Selling);
       
       if (result) {
